@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fun Learning Hub - Educational Games for Kids</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <h1>Fun Learning Hub</h1>
+            </div>
+            <nav class="nav">
+                <button class="nav-btn active" data-game="home">Home</button>
+                <button class="nav-btn" data-game="math">Math Games</button>
+                <button class="nav-btn" data-game="spelling">Spelling</button>
+                <button class="nav-btn" data-game="memory">Memory</button>
+                <button class="nav-btn" data-game="puzzle">Puzzle</button>
+            </nav>
+        </header>
+
+        <main class="main-content">
+            <!-- Home Section -->
+            <section id="home" class="game-section active">
+                <div class="welcome">
+                    <h2>Welcome to Fun Learning Hub!</h2>
+                      <p id="welcome-textss">Learn and have fun with our exciting educational games!</p>
+                    <div class="game-grid">
+                        <div class="game-card" data-game="math">
+                            <i class="fas fa-calculator"></i>
+                            <h3>Math Games</h3>
+                            <p>Practice addition, subtraction, and more!</p>
+                        </div>
+                        <div class="game-card" data-game="spelling">
+                            <i class="fas fa-spell-check"></i>
+                            <h3>Spelling Challenge</h3>
+                            <p>Learn new words and improve spelling!</p>
+                        </div>
+                        <div class="game-card" data-game="memory">
+                            <i class="fas fa-brain"></i>
+                            <h3>Memory Game</h3>
+                            <p>Test your memory with fun cards!</p>
+                        </div>
+                        <div class="game-card" data-game="puzzle">
+                            <i class="fas fa-puzzle-piece"></i>
+                            <h3>Word Puzzle</h3>
+                            <p>Solve word puzzles and learn!</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Math Games Section -->
+            <section id="math" class="game-section">
+                <div class="game-container">
+                    <h2>Math Games</h2>
+                    <div class="game-controls">
+                        <button id="startMath" class="btn btn-primary">Start Game</button>
+                        <button id="resetMath" class="btn btn-secondary">Reset</button>
+                        <div class="score">Score: <span id="mathScore">0</span></div>
+                    </div>
+                    <div id="mathGame" class="game-area">
+                        <div id="mathQuestion" class="question"></div>
+                        <div id="mathOptions" class="options"></div>
+                        <div id="mathFeedback" class="feedback"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Spelling Games Section -->
+            <section id="spelling" class="game-section">
+                <div class="game-container">
+                    <h2>Spelling Challenge</h2>
+                    <div class="game-controls">
+                        <button id="startSpelling" class="btn btn-primary">Start Game</button>
+                        <button id="resetSpelling" class="btn btn-secondary">Reset</button>
+                        <div class="score">Score: <span id="spellingScore">0</span></div>
+                    </div>
+                    <div id="spellingGame" class="game-area">
+                        <div id="spellingQuestion" class="question"></div>
+                        <div id="spellingInput" class="input-area">
+                            <input type="text" id="spellingAnswer" placeholder="Type your answer here...">
+                            <button id="checkSpelling" class="btn btn-primary">Check</button>
+                        </div>
+                        <div id="spellingFeedback" class="feedback"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Memory Game Section -->
+            <section id="memory" class="game-section">
+                <div class="game-container">
+                    <h2>Memory Game</h2>
+                    <div class="game-controls">
+                        <button id="startMemory" class="btn btn-primary">Start Game</button>
+                        <button id="resetMemory" class="btn btn-secondary">Reset</button>
+                        <div class="score">Moves: <span id="memoryMoves">0</span></div>
+                    </div>
+                    <div id="memoryGame" class="game-area">
+                        <div id="memoryBoard" class="memory-board"></div>
+                        <div id="memoryFeedback" class="feedback"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Word Puzzle Section -->
+            <section id="puzzle" class="game-section">
+                <div class="game-container">
+                    <h2>Word Puzzle</h2>
+                    <div class="game-controls">
+                        <button id="startPuzzle" class="btn btn-primary">Start Game</button>
+                        <button id="resetPuzzle" class="btn btn-secondary">Reset</button>
+                        <div class="score">Score: <span id="puzzleScore">0</span></div>
+                    </div>
+                    <div id="puzzleGame" class="game-area">
+                        <div id="puzzleQuestion" class="question"></div>
+                        <div id="puzzleScrambled" class="scrambled-word"></div>
+                        <div id="puzzleInput" class="input-area">
+                            <input type="text" id="puzzleAnswer" placeholder="Unscramble the word...">
+                            <button id="checkPuzzle" class="btn btn-primary">Check</button>
+                        </div>
+                        <div id="puzzleFeedback" class="feedback"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2024 Fun Learning Hub - Making Education Fun!</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
