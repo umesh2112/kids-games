@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>More Fun Games - Fun Learning Hub</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="more-games-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // Fallback for Three.js loading
+        if (typeof THREE === 'undefined') {
+            console.warn('Three.js not loaded, trying alternative CDN...');
+            const script = document.createElement('script');
+            script.src = 'https://unpkg.com/three@0.128.0/build/three.min.js';
+            script.onload = function() {
+                console.log('Three.js loaded from alternative CDN');
+            };
+            script.onerror = function() {
+                console.error('Three.js failed to load from all sources');
+            };
+            document.head.appendChild(script);
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-rocket"></i>
+                <h1>More Fun Games</h1>
+            </div>
+            <nav class="nav">
+                <button class="nav-btn active" data-game="home">Home</button>
+                <button class="nav-btn" data-game="traffic">Traffic Signal</button>
+                <button class="nav-btn" data-game="reaction">Reaction Speed</button>
+                <button class="nav-btn" data-game="dualnback">Dual N-Back</button>
+                <button class="nav-btn" data-game="rubiks">Rubik's Cube</button>
+                <button class="nav-btn back-btn" onclick="window.location.href='index.html'">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
+            </nav>
+        </header>
+
+        <main class="main-content">
+            <!-- Home Section -->
+            <section id="home" class="game-section active">
+                <div class="welcome">
+                    <h2>Welcome to More Fun Games!</h2>
+                    <p>Explore these exciting new games with 3D animations!</p>
+                    <div class="game-grid">
+                        <div class="game-card" data-game="traffic">
+                            <i class="fas fa-traffic-light"></i>
+                            <h3>Traffic Signal Game</h3>
+                            <p>Learn traffic rules with interactive signals!</p>
+                        </div>
+                        <div class="game-card" data-game="reaction">
+                            <i class="fas fa-bolt"></i>
+                            <h3>Reaction Speed</h3>
+                            <p>Test your reflexes and reaction time!</p>
+                        </div>
+                        <div class="game-card" data-game="dualnback">
+                            <i class="fas fa-brain"></i>
+                            <h3>Dual N-Back Memory</h3>
+                            <p>Advanced memory training game!</p>
+                        </div>
+                        <div class="game-card" data-game="rubiks">
+                            <i class="fas fa-cube"></i>
+                            <h3>3D Rubik's Cube</h3>
+                            <p>Solve the classic puzzle in 3D!</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Traffic Signal Game Section -->
+            <section id="traffic" class="game-section">
+                <div class="game-container">
+                    <h2>Traffic Signal Game</h2>
+                    <div class="game-controls">
+                        <button id="startTraffic" class="btn btn-primary">Start Game</button>
+                        <button id="resetTraffic" class="btn btn-secondary">Reset</button>
+                        <div class="score">Score: <span id="trafficScore">0</span></div>
+                    </div>
+                    <div id="trafficGame" class="game-area">
+                        <div class="traffic-light-container">
+                            <div class="traffic-light">
+                                <div class="light red" id="redLight"></div>
+                                <div class="light yellow" id="yellowLight"></div>
+                                <div class="light green" id="greenLight"></div>
+                            </div>
+                        </div>
+                        <div id="trafficQuestion" class="question"></div>
+                        <div id="trafficOptions" class="options"></div>
+                        <div id="trafficFeedback" class="feedback"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Reaction Speed Game Section -->
+            <section id="reaction" class="game-section">
+                <div class="game-container">
+                    <h2>Reaction Speed Test</h2>
+                    <div class="game-controls">
+                        <button id="startReaction" class="btn btn-primary">Start Test</button>
+                        <button id="resetReaction" class="btn btn-secondary">Reset</button>
+                        <div class="score">Best Time: <span id="bestTime">--</span>ms</div>
+                    </div>
+                    <div id="reactionGame" class="game-area">
+                        <div id="reactionTarget" class="reaction-target">
+                            <div class="target-text">Click when you see the target!</div>
+                        </div>
+                        <div id="reactionFeedback" class="feedback"></div>
+                        <div id="reactionStats" class="stats">
+                            <div>Average: <span id="avgTime">--</span>ms</div>
+                            <div>Tests: <span id="testCount">0</span></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Dual N-Back Memory Game Section -->
+            <section id="dualnback" class="game-section">
+                <div class="game-container">
+                    <h2>Dual N-Back Memory Game</h2>
+                    <div class="game-controls">
+                        <button id="startDualNBack" class="btn btn-primary">Start Game</button>
+                        <button id="resetDualNBack" class="btn btn-secondary">Reset</button>
+                        <div class="score">Level: <span id="nLevel">1</span></div>
+                    </div>
+                    <div id="dualNBackGame" class="game-area">
+                        <div class="dual-n-back-container">
+                            <div class="position-grid" id="positionGrid"></div>
+                            <div class="sound-indicator" id="soundIndicator"></div>
+                        </div>
+                        <div class="instructions">
+                            <p>Remember the position and sound from N steps ago!</p>
+                            <p>Press SPACE for position match, S for sound match</p>
+                        </div>
+                        <div id="dualNBackFeedback" class="feedback"></div>
+                        <div class="stats">
+                            <div>Position Hits: <span id="positionHits">0</span></div>
+                            <div>Sound Hits: <span id="soundHits">0</span></div>
+                            <div>Total: <span id="totalHits">0</span></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3D Rubik's Cube Game Section -->
+            <section id="rubiks" class="game-section">
+                <div class="game-container">
+                    <h2>3D Rubik's Cube</h2>
+                    <div class="game-controls">
+                        <button id="startRubiks" class="btn btn-primary">Start Game</button>
+                        <button id="resetRubiks" class="btn btn-secondary">Reset</button>
+                        <button id="scrambleRubiks" class="btn btn-warning">Scramble</button>
+                        <div class="score">Moves: <span id="rubiksMoves">0</span></div>
+                    </div>
+                    <div id="rubiksGame" class="game-area">
+                        <div id="rubiksContainer" class="rubiks-container"></div>
+                        <div class="rubiks-controls">
+                            <div class="control-group">
+                                <h4>Face Controls</h4>
+                                <button class="cube-btn" data-face="F">Front</button>
+                                <button class="cube-btn" data-face="B">Back</button>
+                                <button class="cube-btn" data-face="L">Left</button>
+                                <button class="cube-btn" data-face="R">Right</button>
+                                <button class="cube-btn" data-face="U">Up</button>
+                                <button class="cube-btn" data-face="D">Down</button>
+                            </div>
+                            <div class="control-group">
+                                <h4>Rotation</h4>
+                                <button class="cube-btn" data-rotation="X">Rotate X</button>
+                                <button class="cube-btn" data-rotation="Y">Rotate Y</button>
+                                <button class="cube-btn" data-rotation="Z">Rotate Z</button>
+                            </div>
+                        </div>
+                        <div id="rubiksFeedback" class="feedback"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2024 Fun Learning Hub - More Exciting Games!</p>
+        </footer>
+    </div>
+
+    <script src="more-games-script.js"></script>
+</body>
+</html> 
